@@ -9,5 +9,8 @@
 #define OFF 61
 #define STOP 0
 
+#define VOL_HIGH 32
+#define VOL_LOW 33
+
 #define MAX 256
 #endif

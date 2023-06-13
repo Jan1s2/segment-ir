@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 #include "pins.h"
 
@@ -53,6 +52,9 @@ void setNum(int num)
 
 int getLongFormat(int num) {
     return ((num / 16) * 100) + num % 16;
+}
+int getShortFormat(int num) {
+    return ((num / 100) * 16) + num % 100;
 }
 
 /*
@@ -145,6 +147,15 @@ void loop()
                 case STOP:
                     tmpNum = 0;
                     break;
+                case VOL_LOW:
+                    if(activeNumber > 0) {
+                        activeNumber = getLongFormat(getShortFormat(activeNumber) - 1);
+                    }
+                    break;
+                case VOL_HIGH:
+                    if(getShortFormat(activeNumber) < (MAX - 1)) {
+                        activeNumber = getLongFormat(getShortFormat(activeNumber) + 1);
+                    }
                 default:
                     break;
                 }
